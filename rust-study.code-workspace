@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "temperature-converter"
+		},
+		{
+			"path": "nth-fibonacci"
 		}
 	]
 }
