@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "guessing-game"
+		},
+		{
+			"path": "temperature-converter"
 		}
 	]
 }
