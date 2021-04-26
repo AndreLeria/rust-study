@@ -1,6 +1,9 @@
 use std::io;
 
-enum Temperature { Fahrenheit, Celsius }
+enum Temperature {
+    Fahrenheit,
+    Celsius,
+}
 
 fn main() {
     println!("Please choose input type (F for Fahrenheit, C for Celsius):");
@@ -29,25 +32,20 @@ fn main() {
         .read_line(&mut value)
         .expect("Failed to read line");
 
-    let converted_value: f64 = converter(
-        value
-            .trim()
-            .parse()
-            .expect("Unable to parse value")
-     );
+    let converted_value: f64 = converter(value.trim().parse().expect("Unable to parse value"));
 
     println!("Converted value: {}", converted_value);
 }
 
 fn fahrenheit_to_celsius(f: f64) -> f64 {
-    (f - 32.0) * 1.8
+    (f - 32.0) * (5.0 / 9.0)
 }
 
 fn celsius_to_fahrenheit(c: f64) -> f64 {
     c * 1.8 + 32.0
 }
 
-fn get_converter(t: &Temperature) -> Box<Fn(f64) -> f64> {
+fn get_converter(t: &Temperature) -> Box<dyn Fn(f64) -> f64> {
     Box::new(match t {
         Temperature::Fahrenheit => fahrenheit_to_celsius,
         Temperature::Celsius => celsius_to_fahrenheit,
